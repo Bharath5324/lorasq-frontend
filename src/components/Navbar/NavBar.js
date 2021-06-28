@@ -15,7 +15,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './NavBar.css'
 // import Link from '@material-ui/core/Link';
 const drawerStyle = makeStyles({
   list: {
@@ -54,13 +55,15 @@ export default function NavBar() {
   };
   return (
     <div className={classes.root}>
-      <AppBar style={{"borderRadius": "10px"}} position="static">
+      <AppBar style={{"borderRadius": "10px"}} position="fixed" className="Appbar">
         <Toolbar>
           <IconButton onClick={toggleDrawer(true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            LoRaSq
+            <Link to='/'>
+              LoRaSq
+            </Link>
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
@@ -79,7 +82,6 @@ export default function NavBar() {
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
           >
-            <Router>
               <List>
                 <Link to="/admin" className={classes.link}>              
                   <ListItem button key="Inbox">
@@ -115,7 +117,6 @@ export default function NavBar() {
                 <ListItemText primary="Spam" />
               </ListItem>
               </List>
-            </Router>
           </div>
       </SwipeableDrawer>
     </div>

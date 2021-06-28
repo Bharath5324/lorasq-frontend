@@ -6,13 +6,13 @@ import React, {Fragment} from 'react';
 function App() {
   return (
     <Fragment>
-    <NavBar/>
     <Router>
+    <NavBar/>
         <Switch>
-            <Route to="/">
+            <Route exact path="/">
                 <Landing/>
             </Route>
-            <Route to="/admin">
+            <Route exact path="/admin">
                 <Admin/>
             </Route>
         </Switch>
