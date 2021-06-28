@@ -16,7 +16,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { Link } from 'react-router-dom';
-import './NavBar.css'
+import './Navbar.css'
 // import Link from '@material-ui/core/Link';
 const drawerStyle = makeStyles({
   list: {
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+
 }));
 
 export default function NavBar() {
@@ -50,12 +51,11 @@ export default function NavBar() {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
-    setState({ ...state, ["drawer"]: open });
+    setState({ ...state, "drawer": open });
   };
   return (
     <div className={classes.root}>
-      <AppBar style={{"borderRadius": "10px"}} position="fixed" className="Appbar">
+      <AppBar className="topbar" position="relative">
         <Toolbar>
           <IconButton onClick={toggleDrawer(true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
@@ -68,13 +68,9 @@ export default function NavBar() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <SwipeableDrawer
-            anchor="left"
-            open={state["drawer"]}
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
-          >
+      <SwipeableDrawer  anchor="left" open={state["drawer"]} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)} >
           <div
+            style={{"backgroundColor": "#2c2c2c",}}
             className={clsx(drawClasses.list, {
               [drawClasses.fullList]: false,
             })}
@@ -83,20 +79,24 @@ export default function NavBar() {
             onKeyDown={toggleDrawer(false)}
           >
               <List>
-                <Link to="/admin" className={classes.link}>              
+                <Link to="/dashbord" className={classes.link}>              
                   <ListItem button key="Inbox">
                     <ListItemIcon><MailIcon /></ListItemIcon>
                     <ListItemText primary='Inbox' />
                   </ListItem>
                 </Link>
-                <ListItem button key="Starred">
-                  <ListItemIcon><InboxIcon /></ListItemIcon>
-                  <ListItemText primary="Starred" />
-                </ListItem>
-                <ListItem button key="Drafts">
-                  <ListItemIcon><MailIcon /></ListItemIcon>
-                  <ListItemText primary='Drafts' />
-                </ListItem>
+                <Link to="/profile" className={classes.link}>
+                  <ListItem button key="Starred">
+                    <ListItemIcon><InboxIcon /></ListItemIcon>
+                    <ListItemText primary="Starred" />
+                  </ListItem>
+                </Link>
+                <Link to="/map" className={classes.link}>
+                  <ListItem button key="Drafts">
+                    <ListItemIcon><MailIcon /></ListItemIcon>
+                    <ListItemText primary='Drafts' />
+                  </ListItem>
+                </Link>
                 <ListItem button key="Send Email">
                   <ListItemIcon><InboxIcon /></ListItemIcon>
                   <ListItemText primary="Send Email" />
